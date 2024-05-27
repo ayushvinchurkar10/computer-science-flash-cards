@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website-testing
+  labels:
+    app: website-testing
+    kubernetes.azure.com/generator: devhub
+  namespace: configure-website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: website-testing
+  template:
+    metadata:
+      labels:
+        app: website-testing
+    spec:
+      containers:
+        - name: website-testing
+          image: websitedroot.azurecr.io/demo-testing-1716809875858:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
